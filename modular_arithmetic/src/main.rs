@@ -110,8 +110,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             "Base is zero.".to_string(),
         ));
     } else if base == 1 {
-        println!("The congrence holds for all x ∈ ℤ");
-        return Ok(());
+        match r {
+            0 => {
+                println!("The congrence holds for all x ∈ ℤ");
+                return Ok(());
+            }
+            _ => {
+                eprintln!("The congruence has no solutions as p % 1 is zero for every p.");
+                return Err(Box::<dyn std::error::Error + Send + Sync>::from(
+                    "Base 1 and remainder ≠ 0.".to_string(),
+                ));
+            }
+        };
     }
 
     if r >= base {
